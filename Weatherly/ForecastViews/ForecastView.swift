@@ -14,11 +14,13 @@ import CoreLocation
 struct ForecastView: View {
     
     @Environment(LocationManager.self) private var locationManager
+    @Environment(\.scenePhase) private var scenePhase
     @State private var selectedCity: City?
-    
     let weatherManager = WeatherManager.shared
     @State private var currentWeather: CurrentWeather?
     @State private var isLoading = false
+    @State private var showCitiesList = false
+    @State private var timeZone: TimeZone? = .current
     
     var body: some View {
         VStack {
@@ -30,8 +32,8 @@ struct ForecastView: View {
                     Text(selectedCity.name)
                         .font(.title)
                     if let currentWeather {
-                        Text(Date.now.formatted (date: .abbreviated, time: .omitted))
-                        Text(Date.now.formatted(date: .omitted, time: .shortened))
+                        Text(currentWeather.date.localDate(for: timeZone ?? .current))
+                        Text(currentWeather.date.localTime(for: timeZone ?? .current))
                         ZStack {
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(.secondary.opacity(0.2))
@@ -48,12 +50,57 @@ struct ForecastView: View {
                             .font(.title2)
                         Text(currentWeather.condition.description)
                             .font(.title3)
+                        Spacer()
                         AttributionView()
+                            .tint(.white)
                     }
                 }
             }
         }
         .padding()
+        .background{
+            if selectedCity != nil,
+               let condition = currentWeather?.condition {
+                BackgroundView(condition: condition)
+                    .ignoresSafeArea()
+            }
+        }
+        .preferredColorScheme(.dark)
+        .safeAreaInset(edge: .bottom) {
+            Button {
+                showCitiesList.toggle()
+            } label: {
+                Image(systemName: "list.star")
+                    .padding()
+                    .background(Color(.darkGray))
+                    .clipShape(Circle())
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                    .padding(.trailing, 30)
+            }
+            .fullScreenCover(isPresented: $showCitiesList) {
+                NavigationStack {
+                    CitiesListView(currentCity: selectedCity, selectedCity: $selectedCity)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                Button("Done") {
+                                    showCitiesList = false
+                                }
+                            }
+                        }
+                }
+            }
+        }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active {
+                selectedCity = locationManager.currentCity
+                if let selectedCity {
+                    Task {
+                        await fetchWeather(for: selectedCity)
+                    }
+                }
+            }
+        }
         .task(id: locationManager.userLocation) {
             if let currentLocation = locationManager.userLocation,
                selectedCity == nil {
@@ -75,7 +122,8 @@ struct ForecastView: View {
     func fetchWeather(for city: City) async {
         isLoading = true
         Task.detached { @MainActor in
-            currentWeather = await weatherManager.currentWeather(for: CLLocation(latitude: city.latitude, longitude: city.longitude))
+            currentWeather = await weatherManager.currentWeather(for: city.clLocation)
+            timeZone = await locationManager.getTimezone(for: city.clLocation)
             
         }
         isLoading = false
