@@ -9,9 +9,18 @@ import SwiftUI
 
 @main
 struct WeatherlyApp: App {
+    
+    @State private var locationManager = LocationManager()
+    
     var body: some Scene {
         WindowGroup {
-            ForecastView()
+            if locationManager.isAuthorized {
+                ForecastView()
+            } else {
+                LocationDeniedView()
+            }
+            
         }
+        .environment(locationManager)
     }
 }
