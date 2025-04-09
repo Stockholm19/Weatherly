@@ -22,6 +22,7 @@ struct ForecastView: View {
     @State private var isLoading = false
     @State private var showCitiesList = false
     @State private var timeZone: TimeZone? = .current
+    @State private var dailyForecast: Forecast<DayWeather>?
     
     var highTemperature: String? {
         if let high = hourlyForecast?.map({ $0.temperature }).max() {
@@ -40,38 +41,46 @@ struct ForecastView: View {
     }
     
     var body: some View {
-        VStack {
-            if let selectedCity {
-                if isLoading {
-                    ProgressView()
-                    Text("Fetching Weather...")
-                } else {
-                    Text(selectedCity.name)
-                        .font(.title)
-                    if let currentWeather {
-                        CurrentWeatherView(
-                            currentWeather: currentWeather,
-                            highTemperature: highTemperature,
-                            lowTemperature: lowTemperature,
-                            timeZone: timeZone
-                        )
+        ScrollView {
+            VStack {
+                if let selectedCity {
+                    if isLoading {
+                        ProgressView()
+                        Text("Fetching Weather...")
+                    } else {
+                        Text(selectedCity.name)
+                            .font(.title)
+                        if let currentWeather {
+                            CurrentWeatherView(
+                                currentWeather: currentWeather,
+                                highTemperature: highTemperature,
+                                lowTemperature: lowTemperature,
+                                timeZone: timeZone
+                            )
+                        }
+                        Divider()
+                        if let hourlyForecast {
+                            HourlyForecastView(
+                                hourlyForecast: Array(hourlyForecast.prefix(24)),
+                                timeZone: timeZone
+                            )
+                            
+                        }
+                        Divider()
+                        if let dailyForecast {
+                           DailyForecastView(
+                                dailyForecast: dailyForecast,
+                                timeZone: timeZone
+                            )
+                        }
+                        AttributionView()
+                            .tint(.white)
+                    
                     }
-                    Divider()
-                    if let hourlyForecast {
-                        HourlyForecastView(
-                            hourlyForecast: Array(hourlyForecast.prefix(24)),
-                            timeZone: timeZone
-                        )
-                        
-                    }
-                    Spacer()
-                    AttributionView()
-                        .tint(.white)
-                
                 }
             }
         }
-        .padding()
+        .contentMargins(.all, 15, for: .scrollContent)
         .background{
             if selectedCity != nil,
                let condition = currentWeather?.condition {
@@ -139,6 +148,7 @@ struct ForecastView: View {
             currentWeather = await weatherManager.currentWeather(for: city.clLocation)
             timeZone = await locationManager.getTimezone(for: city.clLocation)
             hourlyForecast = await weatherManager.hourlyForecast(for: city.clLocation)
+            dailyForecast = await weatherManager.dailyForecast(for: city.clLocation)
         }
         isLoading = false
     }

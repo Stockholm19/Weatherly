@@ -5,8 +5,6 @@
 //  Created by Роман Пшеничников on 07.04.2025.
 //
 
-
-
 import Foundation
 import WeatherKit
 import CoreLocation
@@ -20,7 +18,6 @@ class WeatherManager {
         formatter.numberFormatter.maximumFractionDigits = 0
         return formatter
     }()
-        
     
     func currentWeather(for location: CLLocation) async -> CurrentWeather? {
         let currentWeather = await Task.detached(priority: .userInitiated) {
@@ -44,7 +41,18 @@ class WeatherManager {
         return hourlyForecast
     }
     
-    func weatherAtribution() async -> WeatherAttribution? {
+    func dailyForecast(for location: CLLocation) async -> Forecast<DayWeather>? {
+        let dailyForecast = await Task.detached(priority: .userInitiated) {
+            let forecast = try? await WeatherManager.service.weather(
+                for: location,
+                including: .daily
+            )
+            return forecast
+        }.value
+        return dailyForecast
+    }
+    
+    func weatherAttribution() async -> WeatherAttribution? {
         let attribution = await Task(priority: .userInitiated) {
             return try? await WeatherManager.service.attribution
         }.value

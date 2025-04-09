@@ -28,12 +28,12 @@ struct AttributionView: View {
                     } placeholder: {
                         ProgressView()
                     }
-                Text(.init("[\(attribution.serviceName)](\(attribution.legalPageURL))"))    
+                Text(.init("[\(attribution.serviceName)](\(attribution.legalPageURL))"))
             }
         }
         .task {
             Task.detached { @MainActor in
-                attribution = await weatherManager.weatherAtribution()
+                attribution = await weatherManager.weatherAttribution()
             }
         }
     }
