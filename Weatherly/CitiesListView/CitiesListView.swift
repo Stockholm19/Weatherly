@@ -57,6 +57,7 @@ struct CitiesListView: View {
                                         Button(role: .destructive) {
                                             if let index = store.cities.firstIndex(where: { $0.id == city.id }) {
                                                 store.cities.remove(at: index)
+                                                store.saveCities()
                                             }
                                         } label: {
                                             Label("Delete", systemImage: "trash")

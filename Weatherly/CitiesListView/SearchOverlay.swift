@@ -47,6 +47,7 @@ struct SearchOverlay: View {
                                 $0.coordinate.longitude == city.coordinate.longitude
                             }) {
                                 store.cities.insert(city, at: 0)
+                                store.saveCities()
                             }
                             isSearching = false
                         } label: {
