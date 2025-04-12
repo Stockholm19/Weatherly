@@ -11,6 +11,7 @@ import SwiftUI
 struct WeatherlyApp: App {
     
     @State private var locationManager = LocationManager()
+    @State private var store = DataStore()
     
     var body: some Scene {
         WindowGroup {
@@ -22,5 +23,6 @@ struct WeatherlyApp: App {
             
         }
         .environment(locationManager)
+        .environment(store)
     }
 }
