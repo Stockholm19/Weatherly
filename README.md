@@ -35,9 +35,9 @@ Weatherly — это современное погодное приложени�
 
 ## 📱 Скриншоты
 
-| Главный экран | Прогноз на 10 дней | Поиск города |
+| Главный экран | Сохраненные города | Поиск города |
 |---------------|--------------------|--------------|
-| ![Main](https://i.imgur.com/8Dv9y2G.png) | ![Forecast](https://i.imgur.com/lGPHD3v.png) | ![Search](https://i.imgur.com/6ruSSTx.png) |
+| ![Main](https://i.imgur.com/8Dv9y2G.png) | ![Search](https://i.imgur.com/6ruSSTx.png) | ![Forecast](https://i.imgur.com/lGPHD3v.png) |
 
 ## ⚙️ Как запустить
 
