@@ -17,24 +17,19 @@ struct AttributionView: View {
     var body: some View {
         VStack {
             if let attribution {
-                AsyncImage(
-                    url: colorScheme == .dark ?
-                    attribution.combinedMarkDarkURL :
-                    attribution.combinedMarkLightURL) { image in
-                        image
-                            .resizable()
-                            .scaledToFit()
-                            .frame(height: 20)
-                    } placeholder: {
-                        ProgressView()
-                    }
+                AsyncImage(url: colorScheme == .dark ? attribution.combinedMarkDarkURL : attribution.combinedMarkLightURL) { image in
+                    image
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 20)
+                } placeholder: {
+                    ProgressView()
+                }
                 Text(.init("[\(attribution.serviceName)](\(attribution.legalPageURL))"))
             }
         }
         .task {
-            Task.detached { @MainActor in
-                attribution = await weatherManager.weatherAttribution()
-            }
+            attribution = await weatherManager.weatherAttribution()
         }
     }
 }
