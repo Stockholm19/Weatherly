@@ -5,6 +5,12 @@
 
   **Weatherly** — погодное приложение для iOS, написанное на Swift и SwiftUI. Использует `WeatherKit`, `CoreLocation`, `MapKit` и `CoreData` для получения точных данных о погоде и их хранения.
 
+## Скриншоты
+
+  | Главный экран                         | Сохранённые города                     | Поиск города                         |
+  |---------------------------------------|-----------------------------------------|---------------------------------------|
+  | ![Main](https://i.imgur.com/8Dv9y2G.png) | ![Saved Cities](https://i.imgur.com/6ruSSTx.png) | ![Forecast](https://i.imgur.com/lGPHD3v.png) |
+  
   ## Возможности
 
   - Получение актуальной информации о погоде для текущего местоположения
@@ -32,6 +38,9 @@
   - CoreLocation
   - CoreData
   - MVVM
+
+  
+
 </details>
 
 <details>
@@ -39,6 +48,12 @@
 
   **Weatherly** is a weather app for iOS built with Swift and SwiftUI using `WeatherKit`, `CoreLocation`, `MapKit`, and `CoreData`.
 
+  ### Screenshots
+
+  | Main View                             | Saved Cities                            | City Search                           |
+  |---------------------------------------|-----------------------------------------|---------------------------------------|
+  | ![Main](https://i.imgur.com/8Dv9y2G.png) | ![Saved Cities](https://i.imgur.com/6ruSSTx.png) | ![Forecast](https://i.imgur.com/lGPHD3v.png) |
+  
   ### Features
 
   - Get up-to-date weather for your current location
@@ -68,4 +83,7 @@
   - MVVM
   - Async/Await
   - JSON Encoding/Decoding
+
+
+
 </details>
