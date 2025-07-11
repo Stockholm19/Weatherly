@@ -1,96 +1,71 @@
-# 🌦️ Weatherly
+# Weatherly
+
 <details open>
-<summary><strong>🇷🇺 Русская версия</strong></summary>
-Weatherly — погодное приложение для iOS на Swift и SwiftUI с использованием `WeatherKit`, `CoreLocation`, `MapKit` и `CoreData`.
+  <summary><strong>🇷🇺 Русская версия</strong></summary>
 
-Возможности:
+  **Weatherly** — погодное приложение для iOS, написанное на Swift и SwiftUI. Использует `WeatherKit`, `CoreLocation`, `MapKit` и `CoreData` для получения точных данных о погоде и их хранения.
 
-- Получать актуальную информацию о погоде для текущего местоположения
-- Сохранять любимые города
-- Просматривать почасовой и десятидневный прогноз
-- Удобно переключаться между городами
-- Видеть красивые градиентные фоны в зависимости от погодных условий
+  ## Возможности
 
-## 🚀 Особенности
+  - Получение актуальной информации о погоде для текущего местоположения
+  - Сохранение любимых городов
+  - Просмотр почасового прогноза на 24 часа
+  - Прогноз на 10 дней с визуальной температурной шкалой
+  - Переключение между городами
+  - Градиентные фоны, меняющиеся в зависимости от погоды
 
-- 📍 Определение текущего города с помощью CoreLocation
-- 🔎 Поиск и добавление новых городов
-- 🌤 Текущая погода, иконка, температура и описание
-- 🕒 Почасовой прогноз на 24 часа
-- 📅 Прогноз на 10 дней с визуальной температурной шкалой
-- 🎨 Адаптивный дизайн для светлой и темной темы
-- 🧠 Сохранение данных в `Cities.json` с помощью `FileManager` и `CoreData`
+  ## Особенности
 
-## 🛠 Используемые технологии
+  - Определение текущего города через CoreLocation
+  - Поиск и добавление новых городов
+  - Отображение текущей погоды: иконка, температура и описание
+  - Адаптивный дизайн для светлой и тёмной темы
+  - Сохранение данных в `Cities.json` и `CoreData`
+  - Архитектура MVVM с использованием Async/Await и JSON Encoding/Decoding
 
-- Swift 5.9+
-- SwiftUI
-- WeatherKit
-- MapKit
-- CoreLocation
-- CoreData
-- MVVM
-- Async/Await
-- JSON Encoding/Decoding
+  ## Используемые технологии
 
-## 📱 Скриншоты
-
-| Главный экран | Сохраненные города | Поиск города |
-|---------------|--------------------|--------------|
-| ![Main](https://i.imgur.com/8Dv9y2G.png) | ![Search](https://i.imgur.com/6ruSSTx.png) | ![Forecast](https://i.imgur.com/lGPHD3v.png) |
-
-## ⚙️ Как запустить
-
-1. Клонируй репозиторий:
-   ```bash
-   git clone https://github.com/Stockholm19/Weatherly.git
+  - Swift 5.9+
+  - SwiftUI
+  - WeatherKit
+  - MapKit
+  - CoreLocation
+  - CoreData
+  - MVVM
 </details>
 
 <details>
-<summary><strong>🇬🇧 English version</strong></summary>
+  <summary><strong>🇬🇧 English version</strong></summary>
 
-**Weatherly** is a modern iOS weather app built with Swift and SwiftUI. It uses `WeatherKit`, `CoreLocation`, `MapKit`, and `CoreData` to deliver accurate and visually appealing forecasts.
+  **Weatherly** is a weather app for iOS built with Swift and SwiftUI using `WeatherKit`, `CoreLocation`, `MapKit`, and `CoreData`.
 
-With Weatherly, you can:
+  ### Features
 
-- Get up-to-date weather for your current location
-- Save your favorite cities
-- View hourly and 10-day forecasts
-- Switch easily between cities
-- Enjoy beautiful gradient backgrounds based on weather conditions
+  - Get up-to-date weather for your current location
+  - Save favorite cities
+  - View hourly and 10-day forecasts
+  - Switch easily between cities
+  - Gradient backgrounds based on weather conditions
 
-## 🚀 Features
+  ### Highlights
 
-- 📍 Detects your current location via CoreLocation  
-- 🔎 Search and add new cities  
-- 🌤 Current weather with icon, temperature, and condition  
-- 🕒 24-hour hourly forecast  
-- 📅 10-day forecast with visual temperature range  
-- 🎨 Adaptive design for light and dark mode  
-- 🧠 City list saved in `Cities.json` using `FileManager` & `CoreData`
+  - Detect your current city with CoreLocation
+  - Search and add new cities
+  - Display current weather: icon, temperature, and description
+  - 24-hour hourly forecast
+  - 10-day forecast with temperature scale
+  - Adaptive design for light and dark mode
+  - Save data in `Cities.json` and `CoreData`
 
-## 🛠 Tech Stack
+  ### Tech Stack
 
-- Swift 5.9+
-- SwiftUI
-- WeatherKit
-- MapKit
-- CoreLocation
-- CoreData
-- MVVM
-- Async/Await
-- JSON Encoding/Decoding
-
-## 📱 Screenshots
-
-| Main View | 10-Day Forecast | City Search |
-|-----------|------------------|-------------|
-| ![Main](https://i.imgur.com/8Dv9y2G.png) | ![Forecast](https://i.imgur.com/lGPHD3v.png) | ![Search](https://i.imgur.com/6ruSSTx.png) |
-
-## ⚙️ How to Run
-
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/Stockholm19/Weatherly.git
-
+  - Swift 5.9+
+  - SwiftUI
+  - WeatherKit
+  - MapKit
+  - CoreLocation
+  - CoreData
+  - MVVM
+  - Async/Await
+  - JSON Encoding/Decoding
 </details>
