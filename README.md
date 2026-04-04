@@ -3,7 +3,7 @@
 <details open>
   <summary><strong>🇷🇺 Русская версия</strong></summary>
 
-  **Weatherly** — погодное приложение для iOS, написанное на Swift и SwiftUI. Использует `WeatherKit`, `CoreLocation`, `MapKit` и `CoreData` для получения точных данных о погоде и их хранения.
+  **Weatherly** — приложение погоды для iOS, написанное на Swift и SwiftUI. Использует `WeatherKit`, `CoreLocation`, `MapKit` и `CoreData` для получения точных данных о погоде и их хранения.
 
 ## Скриншоты
 
